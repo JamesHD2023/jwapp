@@ -1,0 +1,10 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow all authenticated users to perform ALL operations on all collections
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
